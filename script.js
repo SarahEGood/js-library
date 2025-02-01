@@ -29,15 +29,28 @@ function listLibrary(lib) {
         summary.innerHTML += lib[i].summary;
 
         if (lib[i].read === true) {
-            read.innerHTML = "Read";
+            read.innerHTML = '<img src="resources/book.svg" alt="Read">'
+            
         } else {
-            read.innerHTML = "Unread";
+            read.innerHTML = '<img src="resources/open-book.svg" alt="Unread">';
         }
+
+        buttonWrapper = document.createElement('div');
+        removeButton = document.createElement('button');
+        removeButton.innerHTML = 'Remove';
+        removeButton.onclick = function() {
+            myLibrary.pop(i);
+            libContainer.innerHTML = "";
+            listLibrary(myLibrary);
+        }
+
+        buttonWrapper.appendChild(removeButton);
 
         div.appendChild(title);
         div.appendChild(author);
         div.appendChild(summary);
         div.appendChild(read);
+        div.appendChild(buttonWrapper);
 
         libContainer.appendChild(div);
 
