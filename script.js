@@ -7,18 +7,21 @@ function Book(title, author, summary) {
   this.summary = summary;
 }
 
-function addBookToLibrary() {
-  // take params, create a book then store it in the array
+function addBookToLibrary(title, author, summary) {
+    var newBook = new Book(title, author, summary);
+    myLibrary.push(newBook);
+    console.log(newBook);
+    console.log(myLibrary);
 }
 
-myLibrary.push(new Book('The Hobbit', "J.R.R. Tolkein", 'test'));
-
 function listLibrary(lib) {
+
     for (let i=0; i < lib.length; i++) {
-        const div = document.createElement('div');
-        const title = document.createElement('h2');
-        const author = document.createElement('h3');
-        const summary = document.createElement('p');
+        console.log(lib[i]);
+        div = document.createElement('div');
+        title = document.createElement('h2');
+        author = document.createElement('h3');
+        summary = document.createElement('p');
 
         div.className = 'card';
         title.innerHTML += lib[i].title;
@@ -34,4 +37,18 @@ function listLibrary(lib) {
     }
 }
 
-listLibrary(myLibrary);
+
+document.getElementById('submit').addEventListener("click", function() {
+    event.preventDefault();
+    let title = document.getElementById('bTitle').value;
+    let author = document.getElementById('bAuthor').value;
+    let summary = document.getElementById('bSummary').value;
+
+    if (title === "" || author === "" || summary === "") {
+        alert("Must fill out all fields.");
+    } else {
+        document.getElementById("newbookform").reset();
+        addBookToLibrary(title, author, summary);
+        listLibrary(myLibrary);
+    }
+})
