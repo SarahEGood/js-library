@@ -44,6 +44,16 @@ function listLibrary(lib) {
             listLibrary(myLibrary);
         }
 
+        read.onclick = function () {
+            if (lib[i].read === true) {
+                lib[i].read = false;
+            } else {
+                lib[i].read = true;
+            }
+            libContainer.innerHTML = "";
+            listLibrary(myLibrary);
+        }
+
         buttonWrapper.appendChild(removeButton);
 
         div.appendChild(title);
